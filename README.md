@@ -94,4 +94,4 @@ Accede a `/admin/tupa` para gestionar los procedimientos.
 *   `public/`: Archivos públicos (CSS, JS, imágenes y el archivo `index.php`).
 
 ---
-Desarrollado con ❤️ para mejorar la gestión administrativa.
+Desarrollado por HugoDC3009
