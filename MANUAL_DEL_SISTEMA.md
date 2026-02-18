@@ -149,5 +149,3 @@ Al hacer clic en "Nuevo Trámite", se despliega el formulario de registro.
 *   **TUPA:** Texto Único de Procedimientos Administrativos.
 *   **CRUD:** Create, Read, Update, Delete (Operaciones básicas de base de datos).
 *   **NLP:** Natural Language Processing (Procesamiento de Lenguaje Natural).
-
-
