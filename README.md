@@ -1,68 +1,97 @@
-# CodeIgniter 4 Application Starter
+# 🤖 Leonardito - Chatbot TUPA
 
-## What is CodeIgniter?
+![PHP](https://img.shields.io/badge/PHP-8.1%2B-777BB4?style=for-the-badge&logo=php&logoColor=white)
+![CodeIgniter](https://img.shields.io/badge/CodeIgniter-4.x-EF4223?style=for-the-badge&logo=codeigniter&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-8.0%2B-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+![Laragon](https://img.shields.io/badge/Laragon-Environment-00B0FF?style=for-the-badge)
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+## 📄 Descripción del Proyecto
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+**Leonardito** es una aplicación web inteligente diseñada para facilitar el acceso a la información del **Texto Único de Procedimientos Administrativos (TUPA)**. 
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+El sistema integra un **Chatbot** interactivo que permite a los ciudadanos consultar requisitos, costos y plazos de trámites administrativos mediante lenguaje natural, y un **Panel Administrativo** robusto para la gestión y actualización de estos procedimientos.
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+Este proyecto moderniza la atención al ciudadano, ofreciendo respuestas rápidas y precisas las 24 horas del día.
 
-## Installation & updates
+## ✨ Características Principales
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
+*   **💬 Chatbot Inteligente**: Interfaz conversacional amigable para consultas rápidas sobre trámites (e.g., "requisitos para matrimonio civil").
+*   **📂 Gestión de Contenidos (CRUD)**: Panel administrativo completo para crear, editar y eliminar procedimientos TUPA.
+*   **📄 Procesamiento de PDF**: Capacidad integrada para manejar documentos TUPA oficiales (usando `smalot/pdfparser`).
+*   **🔍 Búsqueda Avanzada**: Algoritmos para localizar trámites específicos basados en palabras clave del usuario.
+*   **📱 Diseño Responsivo**: Accesible desde dispositivos móviles y de escritorio.
 
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
+## 🛠️ Requisitos del Sistema
 
-## Setup
+Para desplegar este proyecto, asegúrate de que tu servidor cumpla con los siguientes requisitos:
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+*   **PHP**: Versión 8.1 o superior.
+*   **Extensiones PHP**: `intl`, `mbstring`, `json`, `mysqlnd`, `curl`.
+*   **Base de Datos**: MySQL o MariaDB.
+*   **Servidor Web**: Apache (recomendado con Laragon/XAMPP) o Nginx.
+*   **Composer**: Para la gestión de dependencias.
 
-## Important Change with index.php
+## 🚀 Instalación y Configuración
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+Sigue estos pasos para configurar el proyecto en tu entorno local:
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+1.  **Clonar el Repositorio**
+    ```bash
+    git clone https://github.com/HugoDC3009/leonardito.git
+    cd leonardito
+    ```
 
-**Please** read the user guide for a better explanation of how CI4 works!
+2.  **Instalar Dependencias**
+    Ejecuta Composer para instalar las librerías necesarias (CodeIgniter 4, PDFParser, etc.):
+    ```bash
+    composer install
+    ```
 
-## Repository Management
+3.  **Configurar Entorno**
+    Copia el archivo de configuración de ejemplo y renómbralo:
+    ```bash
+    cp env .env
+    ```
+    Edita el archivo `.env` y configura tu base de datos y URL base:
+    ```ini
+    CI_ENVIRONMENT = development
+    app.baseURL = 'http://leonardito.test/'
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+    database.default.hostname = localhost
+    database.default.database = nombre_de_tu_bd
+    database.default.username = root
+    database.default.password = 
+    database.default.DBDriver = MySQLi
+    ```
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+4.  **Migrar Base de Datos**
+    Ejecuta las migraciones para crear las tablas necesarias:
+    ```bash
+    php spark migrate
+    ```
 
-## Server Requirements
+5.  **Iniciar Servidor**
+    Si usas Laragon, el host virtual se creará automáticamente. Si no, puedes usar el servidor interno de CodeIgniter:
+    ```bash
+    php spark serve
+    ```
 
-PHP version 8.1 or higher is required, with the following extensions installed:
+## 📖 Uso del Sistema
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+### 🤖 Interfaz del Chatbot
+Accede a la ruta principal `/` para interactuar con el bot.
+*   **Ejemplo de consulta**: *"¿Cuánto cuesta la licencia de funcionamiento?"*
 
-> [!WARNING]
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - If you are still using PHP 7.4 or 8.0, you should upgrade immediately.
-> - The end of life date for PHP 8.1 will be December 31, 2025.
+### ⚙️ Panel Administrativo
+Accede a `/admin/tupa` para gestionar los procedimientos.
+*   **Funciones**: Listar todos los trámites, agregar nuevos procedimientos manualmente o editar la información existente que el chatbot utiliza para responder.
 
-Additionally, make sure that the following extensions are enabled in your PHP:
+## 📁 Estructura del Proyecto
 
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+*   `app/Controllers/Bot.php`: Lógica principal del chatbot.
+*   `app/Controllers/Admin/Tupa.php`: Controlador para la gestión administrativa.
+*   `app/Models/TupaModel.php`: Modelo de interacción con la base de datos de trámites.
+*   `public/`: Archivos públicos (CSS, JS, imágenes y el archivo `index.php`).
+
+---
+Desarrollado con ❤️ para mejorar la gestión administrativa.
